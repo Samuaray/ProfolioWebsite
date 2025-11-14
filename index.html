@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive 3D Card Carousel - Portfolio Website">
+    <meta name="author" content="Your Name">
+    <title>3D Card Carousel</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <h1>✨ 3D Card Carousel ✨</h1>
+
+    <div class="container">
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel"></div>
+
+            <div class="nav-button left" id="prevBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </div>
+
+            <div class="nav-button right" id="nextBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="details-panel" id="detailsPanel">
+            <div class="details-icon" id="detailsIcon">🎨</div>
+            <h2 class="details-title" id="detailsTitle">Creative Design</h2>
+            <div class="details-badge" id="detailsBadge">Design</div>
+            <p class="details-description" id="detailsDescription">
+                Unleash your creativity with stunning visual designs and innovative concepts.
+            </p>
+            <div class="details-features">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span>Professional quality output</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span>Customizable templates</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span>Easy-to-use interface</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span>Regular updates included</span>
+                </div>
+            </div>
+            <button class="action-button">Select This Option</button>
+        </div>
+    </div>
+
+    <script src="js/carousel.js"></script>
+</body>
+</html>
