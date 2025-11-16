@@ -13,6 +13,7 @@
 </head>
 <body>
     <!-- Background Effects -->
+    <canvas id="matrix-rain"></canvas>
     <div class="grid-bg"></div>
     <div class="scanline"></div>
 
@@ -267,7 +268,7 @@
             </div>
 
             <div class="services-grid">
-                <div class="service-card project-card">
+                <div class="service-card project-card" data-project="ecommerce" style="cursor: pointer;">
                     <div class="project-icon">🛒</div>
                     <div class="service-number">[01]</div>
                     <h3>E-COMMERCE PLATFORM</h3>
@@ -275,9 +276,12 @@
                     <div style="margin-top: 1rem;">
                         <span style="font-size: 0.85rem; color: var(--primary); font-family: 'JetBrains Mono', monospace;">React • Node.js • PostgreSQL</span>
                     </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);">
+                        <span>Click for case study →</span>
+                    </div>
                 </div>
 
-                <div class="service-card project-card">
+                <div class="service-card project-card" data-project="automation" style="cursor: pointer;">
                     <div class="project-icon">🤖</div>
                     <div class="service-number">[02]</div>
                     <h3>TASK AUTOMATION TOOL</h3>
@@ -285,15 +289,21 @@
                     <div style="margin-top: 1rem;">
                         <span style="font-size: 0.85rem; color: var(--primary); font-family: 'JetBrains Mono', monospace;">Python • OpenAI API • Docker</span>
                     </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);">
+                        <span>Click for case study →</span>
+                    </div>
                 </div>
 
-                <div class="service-card project-card">
+                <div class="service-card project-card" data-project="analytics" style="cursor: pointer;">
                     <div class="project-icon">📊</div>
                     <div class="service-number">[03]</div>
                     <h3>REAL-TIME ANALYTICS DASHBOARD</h3>
                     <p>Live data visualization platform processing millions of events per day. Features interactive charts, custom filters, and WebSocket-based real-time updates.</p>
                     <div style="margin-top: 1rem;">
                         <span style="font-size: 0.85rem; color: var(--primary); font-family: 'JetBrains Mono', monospace;">TypeScript • React • Redis</span>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);">
+                        <span>Click for case study →</span>
                     </div>
                 </div>
             </div>
@@ -389,6 +399,40 @@
             </div>
         </div>
     </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <div class="project-modal-icon"></div>
+                    <h2 class="modal-title"></h2>
+                    <p class="modal-subtitle"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>📋 Overview</h3>
+                    <p class="modal-overview"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>🎯 The Challenge</h3>
+                    <p class="modal-challenge"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>💡 The Solution</h3>
+                    <p class="modal-solution"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>📊 The Results</h3>
+                    <div class="modal-results"></div>
+                </div>
+                <div class="modal-actions">
+                    <a href="#" class="modal-btn modal-btn-primary" target="_blank">🔗 View Live</a>
+                    <a href="#" class="modal-btn modal-btn-secondary" target="_blank">💻 Source Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>

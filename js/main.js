@@ -203,6 +203,220 @@ window.addEventListener('load', () => {
     }, 2200); // Start after loading screen finishes
 });
 
+// ==================== MATRIX RAIN EFFECT ====================
+function initMatrixRain() {
+    const canvas = document.getElementById('matrix-rain');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100;
+    }
+
+    function draw() {
+        ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#00ff88';
+        ctx.font = `${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    const intervalId = setInterval(draw, 33);
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    return intervalId;
+}
+
+// Start matrix rain after loading screen
+window.addEventListener('load', () => {
+    setTimeout(initMatrixRain, 2000);
+});
+
+// ==================== 3D CARD TILT EFFECT ====================
+function initCardTilt() {
+    const cards = document.querySelectorAll('.service-card, .stat-box');
+
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'none';
+        });
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (centerX - x) / 15;
+
+            card.style.transform = `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                scale3d(1.02, 1.02, 1.02)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transition = 'transform 0.5s ease';
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+    });
+}
+
+// Initialize card tilt after page loads
+window.addEventListener('load', () => {
+    setTimeout(initCardTilt, 2500);
+});
+
+// ==================== PROJECT MODAL ====================
+const projectData = {
+    ecommerce: {
+        icon: '🛒',
+        title: 'E-COMMERCE PLATFORM',
+        subtitle: 'React • Node.js • PostgreSQL',
+        overview: 'A comprehensive full-stack e-commerce solution designed to handle high-traffic shopping experiences. Features include real-time inventory tracking, secure payment processing, advanced search and filtering, and a powerful admin dashboard for managing products, orders, and customers.',
+        challenge: 'The main challenge was building a system that could handle thousands of concurrent users during peak shopping periods (Black Friday, holiday seasons) while maintaining sub-second response times. The platform also needed to integrate with multiple payment providers and shipping APIs while ensuring data consistency across distributed systems.',
+        solution: 'Implemented a microservices architecture with Redis caching layer for frequently accessed data. Used React with server-side rendering for fast initial page loads and optimized SEO. Built a custom inventory management system with real-time updates using WebSockets. Integrated Stripe and PayPal for payments with robust error handling and retry mechanisms.',
+        results: [
+            '✓ Handles 10,000+ concurrent users with 99.9% uptime',
+            '✓ Average page load time under 1.2 seconds',
+            '✓ Reduced cart abandonment rate by 35%',
+            '✓ Processed $2M+ in transactions in first quarter',
+            '✓ 60% faster checkout process compared to previous system'
+        ],
+        liveUrl: 'https://example-ecommerce.com',
+        githubUrl: 'https://github.com/alexchen/ecommerce-platform'
+    },
+    automation: {
+        icon: '🤖',
+        title: 'TASK AUTOMATION TOOL',
+        subtitle: 'Python • OpenAI API • Docker',
+        overview: 'An intelligent developer productivity tool that automates repetitive coding tasks using AI-powered code generation. The tool analyzes codebases, identifies patterns, and generates boilerplate code, tests, and documentation automatically. Designed to integrate seamlessly into existing development workflows.',
+        challenge: 'Developers spend significant time on repetitive tasks like writing boilerplate code, creating unit tests, and updating documentation. The challenge was building a tool that could understand project context, maintain code consistency, and generate high-quality code that actually works without extensive manual editing.',
+        solution: 'Built a Python-based CLI tool that uses OpenAI GPT-4 API for code generation. Implemented custom prompts optimized for different programming languages and frameworks. Created a Docker container for consistent execution across different development environments. Added template system for common patterns and integration with popular IDEs through extensions.',
+        results: [
+            '✓ Reduced boilerplate code writing time by 70%',
+            '✓ Automatically generated 10,000+ unit tests with 85% success rate',
+            '✓ Increased team productivity by 40%',
+            '✓ Adopted by 500+ developers across the organization',
+            '✓ Saved approximately 15 hours per developer per month'
+        ],
+        liveUrl: 'https://automation-tool-demo.com',
+        githubUrl: 'https://github.com/alexchen/automation-tool'
+    },
+    analytics: {
+        icon: '📊',
+        title: 'REAL-TIME ANALYTICS DASHBOARD',
+        subtitle: 'TypeScript • React • Redis',
+        overview: 'A powerful real-time analytics platform that processes and visualizes millions of events per day. Features interactive charts, custom dashboards, advanced filtering, and real-time alerts. Built for data-driven teams that need instant insights into their business metrics and user behavior.',
+        challenge: 'Processing and visualizing millions of data points in real-time while maintaining a responsive user interface was extremely challenging. The system needed to handle sudden traffic spikes, provide sub-second query responses, and allow users to create custom dashboards without performance degradation.',
+        solution: 'Implemented a streaming data pipeline using Redis Streams for real-time event processing. Built a React dashboard with virtualization for rendering large datasets efficiently. Used WebSockets for live updates and implemented smart caching strategies. Created a custom query builder that generates optimized SQL queries and leverages pre-aggregated data when possible.',
+        results: [
+            '✓ Processes 5M+ events per day with <100ms latency',
+            '✓ Supports 1,000+ concurrent dashboard viewers',
+            '✓ Query response time improved by 85%',
+            '✓ Enabled data-driven decisions that increased revenue by 25%',
+            '✓ Reduced infrastructure costs by 40% through optimizations'
+        ],
+        liveUrl: 'https://analytics-dashboard-demo.com',
+        githubUrl: 'https://github.com/alexchen/analytics-dashboard'
+    }
+};
+
+function openProjectModal(projectKey) {
+    const modal = document.getElementById('project-modal');
+    const project = projectData[projectKey];
+
+    if (!project) return;
+
+    // Populate modal content
+    document.querySelector('.project-modal-icon').textContent = project.icon;
+    document.querySelector('.modal-title').textContent = project.title;
+    document.querySelector('.modal-subtitle').textContent = project.subtitle;
+    document.querySelector('.modal-overview').textContent = project.overview;
+    document.querySelector('.modal-challenge').textContent = project.challenge;
+    document.querySelector('.modal-solution').textContent = project.solution;
+
+    // Populate results
+    const resultsDiv = document.querySelector('.modal-results');
+    resultsDiv.innerHTML = '<ul>' + project.results.map(result => `<li>${result}</li>`).join('') + '</ul>';
+
+    // Update links
+    document.querySelector('.modal-btn-primary').href = project.liveUrl;
+    document.querySelector('.modal-btn-secondary').href = project.githubUrl;
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('project-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Initialize project cards click handlers
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const projectCards = document.querySelectorAll('[data-project]');
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const projectKey = card.getAttribute('data-project');
+                openProjectModal(projectKey);
+            });
+        });
+
+        // Close modal handlers
+        const closeBtn = document.querySelector('.modal-close');
+        const modal = document.getElementById('project-modal');
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeProjectModal);
+        }
+
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeProjectModal();
+                }
+            });
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeProjectModal();
+            }
+        });
+    }, 2500);
+});
+
 // ==================== PERFORMANCE MONITORING ====================
 if ('performance' in window) {
     window.addEventListener('load', () => {
