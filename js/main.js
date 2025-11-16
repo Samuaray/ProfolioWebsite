@@ -23,8 +23,8 @@ if (contactForm) {
         const originalText = submitBtn.querySelector('span').textContent;
 
         // Show success message
-        submitBtn.querySelector('span').textContent = '> Command Executed Successfully';
-        submitBtn.style.borderColor = var(--primary);
+        submitBtn.querySelector('span').textContent = '> Message Sent Successfully';
+        submitBtn.style.borderColor = 'var(--primary)';
 
         // Reset form
         contactForm.reset();
@@ -40,39 +40,46 @@ if (contactForm) {
 }
 
 // ==================== CONSOLE EASTER EGG ====================
-console.log('%c> NEXTECH SYSTEMS ONLINE', 'color: #00ff88; font-size: 20px; font-weight: bold; font-family: monospace;');
-console.log('%c> All systems operational', 'color: #0088ff; font-size: 14px; font-family: monospace;');
+console.log('%c> ALEX CHEN PORTFOLIO INITIALIZED', 'color: #00ff88; font-size: 20px; font-weight: bold; font-family: monospace;');
+console.log('%c> Software Engineer | Full-Stack Developer', 'color: #0088ff; font-size: 14px; font-family: monospace;');
 console.log('%c> Type help() for available commands', 'color: rgba(255, 255, 255, 0.7); font-size: 12px; font-family: monospace;');
 
 // Fun console commands
 window.help = function() {
-    console.log('%c=== NEXTECH COMMAND LIST ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
-    console.log('%cabout() - Learn about this portfolio', 'color: #fff; font-family: monospace;');
-    console.log('%cstats() - View portfolio statistics', 'color: #fff; font-family: monospace;');
-    console.log('%cservices() - List available services', 'color: #fff; font-family: monospace;');
-    console.log('%ccontact() - Get contact information', 'color: #fff; font-family: monospace;');
+    console.log('%c=== AVAILABLE COMMANDS ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
+    console.log('%cabout() - Learn about me', 'color: #fff; font-family: monospace;');
+    console.log('%cstats() - View my statistics', 'color: #fff; font-family: monospace;');
+    console.log('%cprojects() - See featured projects', 'color: #fff; font-family: monospace;');
+    console.log('%cskills() - List my tech stack', 'color: #fff; font-family: monospace;');
+    console.log('%ccontact() - Get in touch', 'color: #fff; font-family: monospace;');
 };
 
 window.about = function() {
-    console.log('%c> High-tech portfolio built with vanilla HTML, CSS, and JavaScript', 'color: #00ff88; font-family: monospace;');
-    console.log('%c> Terminal-inspired design with circuit board aesthetics', 'color: #0088ff; font-family: monospace;');
+    console.log('%c> Passionate software engineer with 5+ years of experience', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Specializing in full-stack development and scalable web applications', 'color: #0088ff; font-family: monospace;');
+    console.log('%c> Built with vanilla HTML, CSS, and JavaScript', 'color: rgba(255, 255, 255, 0.7); font-family: monospace;');
 };
 
 window.stats = function() {
-    console.log('%c> Projects: 500+', 'color: #00ff88; font-family: monospace;');
-    console.log('%c> Clients: 250+', 'color: #00ff88; font-family: monospace;');
-    console.log('%c> Uptime: 99.9%', 'color: #00ff88; font-family: monospace;');
-    console.log('%c> Countries: 45+', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Experience: 5+ Years', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Projects: 50+', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Commits: 10K+', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Coffee: ∞', 'color: #00ff88; font-family: monospace;');
 };
 
-window.services = function() {
-    console.log('%c[01] System Architecture', 'color: #00ff88; font-family: monospace;');
-    console.log('%c[02] Cloud Infrastructure', 'color: #00ff88; font-family: monospace;');
-    console.log('%c[03] AI Integration', 'color: #00ff88; font-family: monospace;');
+window.projects = function() {
+    console.log('%c[01] E-Commerce Platform - React, Node.js, PostgreSQL', 'color: #00ff88; font-family: monospace;');
+    console.log('%c[02] Task Automation Tool - Python, OpenAI API, Docker', 'color: #00ff88; font-family: monospace;');
+    console.log('%c[03] Real-Time Analytics Dashboard - TypeScript, React, Redis', 'color: #00ff88; font-family: monospace;');
+};
+
+window.skills = function() {
+    console.log('%c> React | Node.js | Python | Docker | Kubernetes', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> AWS | TypeScript | PostgreSQL', 'color: #00ff88; font-family: monospace;');
 };
 
 window.contact = function() {
-    console.log('%c> Scroll to contact section to get in touch', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Scrolling to contact section...', 'color: #00ff88; font-family: monospace;');
     document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
 };
 
