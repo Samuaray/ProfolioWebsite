@@ -1,8 +1,16 @@
 // ==================== LOADING SCREEN ====================
+// Ensure page starts at top
+window.scrollTo(0, 0);
+
 window.addEventListener('load', () => {
+    // Keep page at top during load
+    window.scrollTo(0, 0);
+
     const loadingScreen = document.getElementById('loading-screen');
     setTimeout(() => {
         loadingScreen.classList.add('hidden');
+        // Ensure we're still at top after loading screen disappears
+        window.scrollTo(0, 0);
     }, 2000); // Hide after 2 seconds
 });
 
