@@ -12,114 +12,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ==================== FLOATING NAV DOTS ====================
-const sections = document.querySelectorAll('.section, .hero');
-const navDots = document.querySelectorAll('.nav-dots .dot');
-
-// Update active dot on scroll
-const updateActiveDot = () => {
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navDots.forEach(dot => {
-        dot.classList.remove('active');
-        if (dot.getAttribute('data-section') === current) {
-            dot.classList.add('active');
-        }
-    });
-};
-
-window.addEventListener('scroll', updateActiveDot);
-updateActiveDot(); // Initial call
-
-// ==================== SCROLL ANIMATIONS ====================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-
-            // Animate skill bars when skills section is visible
-            if (entry.target.classList.contains('skills')) {
-                animateSkillBars();
-            }
-        }
-    });
-}, observerOptions);
-
-// Observe all sections
-document.querySelectorAll('.section').forEach(section => {
-    observer.observe(section);
-});
-
-// ==================== SKILL BARS ANIMATION ====================
-let skillBarsAnimated = false;
-
-function animateSkillBars() {
-    if (skillBarsAnimated) return;
-    skillBarsAnimated = true;
-
-    const skillBars = document.querySelectorAll('.skill-progress');
-    skillBars.forEach((bar, index) => {
-        setTimeout(() => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 100);
-        }, index * 100);
-    });
-}
-
-// ==================== HORIZONTAL PROJECT SCROLL ====================
-const projectsContainer = document.querySelector('.projects-scroll-container');
-
-if (projectsContainer) {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    projectsContainer.addEventListener('mousedown', (e) => {
-        isDown = true;
-        projectsContainer.style.cursor = 'grabbing';
-        startX = e.pageX - projectsContainer.offsetLeft;
-        scrollLeft = projectsContainer.scrollLeft;
-    });
-
-    projectsContainer.addEventListener('mouseleave', () => {
-        isDown = false;
-        projectsContainer.style.cursor = 'grab';
-    });
-
-    projectsContainer.addEventListener('mouseup', () => {
-        isDown = false;
-        projectsContainer.style.cursor = 'grab';
-    });
-
-    projectsContainer.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - projectsContainer.offsetLeft;
-        const walk = (x - startX) * 2;
-        projectsContainer.scrollLeft = scrollLeft - walk;
-    });
-
-    // Set cursor
-    projectsContainer.style.cursor = 'grab';
-}
-
 // ==================== FORM SUBMISSION ====================
 const contactForm = document.querySelector('.contact-form');
 
@@ -127,142 +19,116 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const message = formData.get('message');
-
-        // Here you would typically send the data to a server
-        // For now, we'll just log it and show a message
-        console.log('Form submitted:', { name, email, message });
+        const submitBtn = contactForm.querySelector('.cta-button');
+        const originalText = submitBtn.querySelector('span').textContent;
 
         // Show success message
-        const submitBtn = contactForm.querySelector('.btn-primary');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Message Sent!';
-        submitBtn.style.background = '#4caf50';
+        submitBtn.querySelector('span').textContent = '> Command Executed Successfully';
+        submitBtn.style.borderColor = var(--primary);
 
         // Reset form
         contactForm.reset();
 
         // Reset button after 3 seconds
         setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = '';
+            submitBtn.querySelector('span').textContent = originalText;
         }, 3000);
+
+        // In production, you would send the data to a server here
+        console.log('%c> Form submitted successfully', 'color: #00ff88; font-family: monospace;');
     });
 }
 
-// ==================== MICRO-INTERACTIONS ====================
-// Add hover effects to cards
-const cards = document.querySelectorAll('.glass');
+// ==================== CONSOLE EASTER EGG ====================
+console.log('%c> NEXTECH SYSTEMS ONLINE', 'color: #00ff88; font-size: 20px; font-weight: bold; font-family: monospace;');
+console.log('%c> All systems operational', 'color: #0088ff; font-size: 14px; font-family: monospace;');
+console.log('%c> Type help() for available commands', 'color: rgba(255, 255, 255, 0.7); font-size: 12px; font-family: monospace;');
 
-cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
-    });
-
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
-
-// ==================== STATS COUNTER ANIMATION ====================
-const stats = document.querySelectorAll('.stat-card h4');
-let statsAnimated = false;
-
-const animateStats = () => {
-    if (statsAnimated) return;
-
-    const statSection = document.querySelector('.about');
-    const rect = statSection.getBoundingClientRect();
-
-    if (rect.top < window.innerHeight && rect.bottom >= 0) {
-        statsAnimated = true;
-
-        stats.forEach(stat => {
-            const target = stat.textContent;
-            const isNumber = target.match(/\d+/);
-
-            if (isNumber) {
-                const number = parseInt(isNumber[0]);
-                const suffix = target.replace(number, '');
-                let current = 0;
-                const increment = number / 50;
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= number) {
-                        stat.textContent = number + suffix;
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = Math.floor(current) + suffix;
-                    }
-                }, 30);
-            }
-        });
-    }
+// Fun console commands
+window.help = function() {
+    console.log('%c=== NEXTECH COMMAND LIST ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
+    console.log('%cabout() - Learn about this portfolio', 'color: #fff; font-family: monospace;');
+    console.log('%cstats() - View portfolio statistics', 'color: #fff; font-family: monospace;');
+    console.log('%cservices() - List available services', 'color: #fff; font-family: monospace;');
+    console.log('%ccontact() - Get contact information', 'color: #fff; font-family: monospace;');
 };
 
-window.addEventListener('scroll', animateStats);
-
-// ==================== PARALLAX EFFECT FOR HERO ====================
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-
-    if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - scrolled / 700;
-    }
-});
-
-// ==================== MOBILE MENU (if needed) ====================
-// Add this if you want to add a mobile hamburger menu later
-const createMobileMenu = () => {
-    if (window.innerWidth <= 768) {
-        // Mobile menu logic here
-        console.log('Mobile view detected');
-    }
+window.about = function() {
+    console.log('%c> High-tech portfolio built with vanilla HTML, CSS, and JavaScript', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Terminal-inspired design with circuit board aesthetics', 'color: #0088ff; font-family: monospace;');
 };
 
-window.addEventListener('resize', createMobileMenu);
-createMobileMenu();
+window.stats = function() {
+    console.log('%c> Projects: 500+', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Clients: 250+', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Uptime: 99.9%', 'color: #00ff88; font-family: monospace;');
+    console.log('%c> Countries: 45+', 'color: #00ff88; font-family: monospace;');
+};
 
-// ==================== LOADING ANIMATION ====================
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
+window.services = function() {
+    console.log('%c[01] System Architecture', 'color: #00ff88; font-family: monospace;');
+    console.log('%c[02] Cloud Infrastructure', 'color: #00ff88; font-family: monospace;');
+    console.log('%c[03] AI Integration', 'color: #00ff88; font-family: monospace;');
+};
 
-    // Trigger initial animations
-    const heroElements = document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3, .fade-in-delay-4');
-    heroElements.forEach((el, index) => {
-        setTimeout(() => {
-            el.style.opacity = '1';
-        }, index * 100);
+window.contact = function() {
+    console.log('%c> Scroll to contact section to get in touch', 'color: #00ff88; font-family: monospace;');
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+};
+
+// ==================== SCROLL ANIMATIONS ====================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
     });
+}, observerOptions);
+
+// Observe sections for fade-in effect
+document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(section);
 });
 
-// ==================== CONSOLE MESSAGE ====================
-console.log('%c👋 Hey there!', 'font-size: 24px; font-weight: bold; color: #0066FF;');
-console.log('%cLike what you see? Let\'s connect!', 'font-size: 16px; color: #666;');
+// ==================== TYPING EFFECT (optional) ====================
+function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    element.textContent = '';
 
-// ==================== UTILITY: DEBOUNCE ====================
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
 }
 
-// Use debounce for scroll events if needed
-const debouncedScroll = debounce(() => {
-    // Additional scroll logic here
-}, 100);
+// Uncomment to enable typing effect on hero title
+// window.addEventListener('load', () => {
+//     const heroTitle = document.querySelector('.hero-title');
+//     if (heroTitle) {
+//         const text = heroTitle.textContent;
+//         typeWriter(heroTitle, text, 100);
+//     }
+// });
 
-window.addEventListener('scroll', debouncedScroll);
+// ==================== PERFORMANCE MONITORING ====================
+if ('performance' in window) {
+    window.addEventListener('load', () => {
+        const perfData = window.performance.timing;
+        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+        console.log(`%c> Page loaded in ${pageLoadTime}ms`, 'color: #0088ff; font-family: monospace;');
+    });
+}
