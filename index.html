@@ -89,6 +89,23 @@
         </svg>
     </div>
 
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="terminal-boot">
+                <p class="boot-line">&gt; Initializing portfolio.exe...</p>
+                <p class="boot-line">&gt; Loading modules...</p>
+                <p class="boot-line">&gt; Establishing connection...</p>
+                <p class="boot-line">&gt; System ready.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+        <span>↑</span>
+    </button>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -96,7 +113,12 @@
                 <div class="logo">
                     <span class="logo-prefix">&gt;</span> ALEX_CHEN<span class="cursor">_</span>
                 </div>
-                <nav>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
                     <a href="#hero" class="nav-link"><span class="bracket-left">[ </span>Home<span class="bracket-right"> ]</span></a>
                     <a href="#about" class="nav-link"><span class="bracket-left">[ </span>About<span class="bracket-right"> ]</span></a>
                     <a href="#experience" class="nav-link"><span class="bracket-left">[ </span>Experience<span class="bracket-right"> ]</span></a>
@@ -117,11 +139,21 @@
                 Full-stack developer passionate about building scalable web applications
                 and solving complex problems with clean, efficient code.
             </p>
-            <a href="#contact" class="cta-button">
-                <span>Get In Touch</span>
-            </a>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">
+                    <span>Get In Touch</span>
+                </a>
+                <a href="#" class="cta-button cta-secondary" download>
+                    <span>↓ Download Resume</span>
+                </a>
+            </div>
         </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-line"></div>
+    </div>
 
     <!-- Stats Section -->
     <section class="stats">
@@ -147,6 +179,11 @@
         </div>
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-line"></div>
+    </div>
+
     <!-- About Section -->
     <section id="about" class="services">
         <div class="container">
@@ -168,6 +205,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-line"></div>
+    </div>
 
     <!-- Work Experience Section -->
     <section id="experience" class="services">
@@ -211,6 +253,11 @@
         </div>
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-line"></div>
+    </div>
+
     <!-- Projects Section -->
     <section id="projects" class="services">
         <div class="container">
@@ -220,7 +267,8 @@
             </div>
 
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card project-card">
+                    <div class="project-icon">🛒</div>
                     <div class="service-number">[01]</div>
                     <h3>E-COMMERCE PLATFORM</h3>
                     <p>Full-stack e-commerce application with real-time inventory management, payment processing, and admin dashboard. Built with React, Node.js, and PostgreSQL.</p>
@@ -229,7 +277,8 @@
                     </div>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card project-card">
+                    <div class="project-icon">🤖</div>
                     <div class="service-number">[02]</div>
                     <h3>TASK AUTOMATION TOOL</h3>
                     <p>Developer productivity tool that automates repetitive coding tasks using custom scripts and AI-powered code generation. Increased team efficiency by 40%.</p>
@@ -238,7 +287,8 @@
                     </div>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card project-card">
+                    <div class="project-icon">📊</div>
                     <div class="service-number">[03]</div>
                     <h3>REAL-TIME ANALYTICS DASHBOARD</h3>
                     <p>Live data visualization platform processing millions of events per day. Features interactive charts, custom filters, and WebSocket-based real-time updates.</p>
@@ -249,6 +299,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-line"></div>
+    </div>
 
     <!-- Tech Stack Section -->
     <section id="tech" class="tech-stack">
@@ -270,6 +325,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-line"></div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
