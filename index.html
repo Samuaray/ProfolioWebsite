@@ -3,254 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive 3D Card Carousel - Portfolio Website">
+    <meta name="description" content="Portfolio of [Your Name] - Web Developer & Designer">
     <meta name="author" content="Your Name">
     <title>Your Name - Portfolio</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+    <!-- Floating Navigation Dots -->
+    <nav class="nav-dots">
+        <a href="#hero" class="dot active" data-section="hero"></a>
+        <a href="#about" class="dot" data-section="about"></a>
+        <a href="#projects" class="dot" data-section="projects"></a>
+        <a href="#skills" class="dot" data-section="skills"></a>
+        <a href="#contact" class="dot" data-section="contact"></a>
+    </nav>
 
-    <!-- Home Button (shown when in section view) -->
-    <button class="home-button" onclick="returnToHome()">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-            <path fill="white" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-        </svg>
-        <span>Home</span>
-    </button>
-
-    <h1>✨ Welcome to My Portfolio ✨</h1>
-
-    <div class="container">
-        <div class="carousel-wrapper">
-            <div class="carousel" id="carousel"></div>
-
-            <div class="nav-button left" id="prevBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </div>
-
-            <div class="nav-button right" id="nextBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                </svg>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <p class="hero-greeting fade-in">Hello, I'm</p>
+            <h1 class="hero-name fade-in-delay-1">Your Name</h1>
+            <p class="hero-title fade-in-delay-2">Web Developer & Creative Designer</p>
+            <p class="hero-subtitle fade-in-delay-3">I craft beautiful digital experiences that make a difference</p>
+            <div class="hero-cta fade-in-delay-4">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
         </div>
-
-        <div class="details-panel" id="detailsPanel">
-            <div class="details-icon" id="detailsIcon">🏠</div>
-            <h2 class="details-title" id="detailsTitle">Home</h2>
-            <div class="details-badge" id="detailsBadge">Start Here</div>
-            <p class="details-description" id="detailsDescription">
-                Welcome to my portfolio. Explore my work and get to know me.
-            </p>
-            <div class="details-features">
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span>Interactive navigation</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span>Explore my projects</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span>Learn about my skills</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span>Get in touch</span>
-                </div>
-            </div>
-            <button class="action-button">Explore Section</button>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
-    </div>
+    </section>
 
-    <!-- Section Content Areas (Hidden by default) -->
-    <div class="sections-container">
-        <!-- About Section -->
-        <section id="section-about" class="section-content">
-            <div class="section-inner">
-                <h2>About Me</h2>
-                <div class="about-content">
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card glass">
                     <div class="about-image">
-                        <div class="profile-placeholder">👨‍💻</div>
+                        <div class="profile-circle">
+                            <span class="profile-emoji">👨‍💻</span>
+                        </div>
                     </div>
                     <div class="about-text">
                         <h3>Hi, I'm [Your Name]</h3>
-                        <p>I'm a passionate web developer with expertise in creating beautiful, functional websites and applications.</p>
-                        <p>With [X] years of experience in the field, I specialize in modern web technologies and love bringing creative ideas to life through code.</p>
+                        <p>A passionate web developer with a keen eye for design and a love for creating seamless digital experiences. I specialize in building modern, responsive websites that not only look great but perform exceptionally.</p>
+                        <p>With expertise in both front-end and back-end development, I bring ideas to life through clean code and thoughtful design.</p>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <h4>5+</h4>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <h4>50+</h4>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <h4>30+</h4>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <h4>100%</h4>
+                        <p>Commitment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <div class="about-stats">
-                            <div class="stat">
-                                <h4>5+</h4>
-                                <p>Years Experience</p>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container-full">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Swipe or drag to explore</p>
+
+            <div class="projects-scroll-container">
+                <div class="projects-track">
+                    <!-- Project 1 -->
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span>🎨</span>
                             </div>
-                            <div class="stat">
-                                <h4>20+</h4>
-                                <p>Projects Completed</p>
+                        </div>
+                        <div class="project-info">
+                            <h3>Portfolio Website</h3>
+                            <p>A modern, responsive portfolio built with HTML, CSS, and JavaScript featuring smooth animations and clean design.</p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
                             </div>
-                            <div class="stat">
-                                <h4>15+</h4>
-                                <p>Happy Clients</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span>🚀</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-Commerce Platform</h3>
+                            <p>Full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.</p>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                                <span>Stripe</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span>💬</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Real-Time Chat App</h3>
+                            <p>WebSocket-powered chat application with private messaging, group chats, and file sharing capabilities.</p>
+                            <div class="project-tags">
+                                <span>Vue.js</span>
+                                <span>Socket.io</span>
+                                <span>Express</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span>📊</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Analytics Dashboard</h3>
+                            <p>Interactive data visualization dashboard with real-time metrics, charts, and custom reporting features.</p>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>D3.js</span>
+                                <span>TypeScript</span>
+                                <span>Firebase</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Live Demo
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="section-projects" class="section-content">
-            <div class="section-inner">
-                <h2>My Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-icon">💼</div>
-                        <h3>Project 1</h3>
-                        <p>Description of your first project. Technologies used: React, Node.js, MongoDB</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Live Demo</a>
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category glass">
+                    <h3>Frontend Development</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">HTML & CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript / TypeScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React / Vue.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Responsive Design</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-icon">🚀</div>
-                        <h3>Project 2</h3>
-                        <p>Description of your second project. Technologies used: Vue.js, Express, PostgreSQL</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Live Demo</a>
+                </div>
+
+                <div class="skill-category glass">
+                    <h3>Backend Development</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js / Express</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python / Django</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">REST APIs</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Database (SQL/NoSQL)</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-icon">⚡</div>
-                        <h3>Project 3</h3>
-                        <p>Description of your third project. Technologies used: Next.js, TypeScript, Tailwind</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Live Demo</a>
+                </div>
+
+                <div class="skill-category glass">
+                    <h3>Tools & Others</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Git / GitHub</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Figma / Design</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">AWS / Cloud</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills Section -->
-        <section id="section-skills" class="section-content">
-            <div class="section-inner">
-                <h2>Skills & Technologies</h2>
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h3>Frontend</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Vue.js</span>
-                            <span class="skill-tag">TypeScript</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Backend</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">Express</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Django</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">MongoDB</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Tools & Others</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">REST APIs</span>
-                            <span class="skill-tag">GraphQL</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-subtitle">Have a project in mind? Let's make it happen.</p>
 
-        <!-- Contact Section -->
-        <section id="section-contact" class="section-content">
-            <div class="section-inner">
-                <h2>Get In Touch</h2>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Let's Connect</h3>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card glass">
+                        <h3>Get In Touch</h3>
                         <p>I'm always interested in hearing about new projects and opportunities.</p>
+
                         <div class="contact-methods">
-                            <div class="contact-method">
-                                <span class="contact-icon">📧</span>
-                                <a href="mailto:your.email@example.com">your.email@example.com</a>
-                            </div>
-                            <div class="contact-method">
-                                <span class="contact-icon">💼</span>
-                                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                            </div>
-                            <div class="contact-method">
-                                <span class="contact-icon">🐙</span>
-                                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                            </div>
+                            <a href="mailto:your.email@example.com" class="contact-method">
+                                <div class="method-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <span>your.email@example.com</span>
+                                </div>
+                            </a>
+
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-method">
+                                <div class="method-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>LinkedIn</strong>
+                                    <span>/yourprofile</span>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/yourusername" target="_blank" class="contact-method">
+                                <div class="method-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>GitHub</strong>
+                                    <span>/yourusername</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <form class="contact-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="submit-button">Send Message</button>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form glass">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Resume Section -->
-        <section id="section-resume" class="section-content">
-            <div class="section-inner">
-                <h2>Resume</h2>
-                <div class="resume-content">
-                    <div class="resume-preview">
-                        <div class="resume-icon">📄</div>
-                        <h3>Download My Resume</h3>
-                        <p>Get a detailed overview of my professional experience, education, and skills.</p>
-                        <button class="download-button">
-                            <svg viewBox="0 0 24 24" width="20" height="20">
-                                <path fill="white" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                            </svg>
-                            Download PDF
-                        </button>
-                    </div>
-                    <div class="resume-highlights">
-                        <h3>Highlights</h3>
-                        <ul>
-                            <li>5+ years of professional web development experience</li>
-                            <li>Proficient in modern JavaScript frameworks</li>
-                            <li>Strong background in responsive design</li>
-                            <li>Experience with agile development methodologies</li>
-                            <li>Bachelor's degree in Computer Science</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#hero">Back to Top</a>
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <!-- Home Section (Placeholder) -->
-        <section id="section-home" class="section-content">
-            <div class="section-inner">
-                <h2>Welcome</h2>
-                <p>Use the carousel above to navigate to different sections!</p>
-            </div>
-        </section>
-    </div>
-
-    <script src="js/carousel.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
