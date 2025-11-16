@@ -151,8 +151,14 @@ window.projects = function() {
 };
 
 window.skills = function() {
-    console.log('%c> React | Node.js | Python | Docker | Kubernetes', 'color: #00ff88; font-family: monospace;');
-    console.log('%c> AWS | TypeScript | PostgreSQL', 'color: #00ff88; font-family: monospace;');
+    console.log('%c=== FRONTEND ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
+    console.log('%cReact • TypeScript • JavaScript • Vue.js • HTML5 • CSS3 • Tailwind • Next.js', 'color: #fff; font-family: monospace;');
+    console.log('%c\n=== BACKEND ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
+    console.log('%cNode.js • Python • Express • FastAPI • GraphQL • REST APIs • WebSockets • Microservices', 'color: #fff; font-family: monospace;');
+    console.log('%c\n=== DEVOPS & CLOUD ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
+    console.log('%cAWS • Docker • Kubernetes • CI/CD • GitHub Actions • Terraform • Linux • Nginx', 'color: #fff; font-family: monospace;');
+    console.log('%c\n=== DATABASES ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
+    console.log('%cPostgreSQL • MongoDB • Redis • MySQL • DynamoDB • Elasticsearch', 'color: #fff; font-family: monospace;');
 };
 
 window.contact = function() {
