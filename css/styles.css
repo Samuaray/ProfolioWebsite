@@ -30,6 +30,18 @@ body {
 
 /* ==================== BACKGROUND EFFECTS ==================== */
 
+/* Matrix Rain Canvas */
+#matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
 /* Animated Grid */
 .grid-bg {
     position: fixed;
@@ -955,6 +967,197 @@ nav {
 .project-card > * {
     position: relative;
     z-index: 1;
+}
+
+/* ==================== PROJECT MODAL ==================== */
+.project-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10001;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.project-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.modal-content {
+    position: relative;
+    background: rgba(13, 13, 13, 0.95);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    background: var(--primary);
+    color: var(--darker);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 50px 40px 40px;
+}
+
+.modal-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.project-modal-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.modal-subtitle {
+    color: var(--secondary);
+    font-size: 18px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.modal-section {
+    margin-bottom: 30px;
+}
+
+.modal-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.modal-section p, .modal-section li {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-results ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-results li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.modal-results li:last-child {
+    border-bottom: none;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.modal-btn {
+    padding: 15px 30px;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.modal-btn:hover {
+    background: var(--primary);
+    color: var(--darker);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.modal-btn-secondary {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.modal-btn-secondary:hover {
+    background: var(--secondary);
+    box-shadow: 0 0 20px rgba(0, 136, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .modal-body {
+        padding: 40px 20px 20px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+    }
+
+    .project-modal-icon {
+        font-size: 60px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ==================== SMOOTH SCROLL ==================== */
