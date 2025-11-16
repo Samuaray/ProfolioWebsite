@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Interactive 3D Card Carousel - Portfolio Website">
     <meta name="author" content="Your Name">
-    <title>3D Card Carousel</title>
+    <title>Your Name - Portfolio</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="particles" id="particles"></div>
 
-    <h1>✨ 3D Card Carousel ✨</h1>
+    <!-- Home Button (shown when in section view) -->
+    <button class="home-button" onclick="returnToHome()">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="white" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span>Home</span>
+    </button>
+
+    <h1>✨ Welcome to My Portfolio ✨</h1>
 
     <div class="container">
         <div class="carousel-wrapper">
@@ -31,32 +39,216 @@
         </div>
 
         <div class="details-panel" id="detailsPanel">
-            <div class="details-icon" id="detailsIcon">🎨</div>
-            <h2 class="details-title" id="detailsTitle">Creative Design</h2>
-            <div class="details-badge" id="detailsBadge">Design</div>
+            <div class="details-icon" id="detailsIcon">🏠</div>
+            <h2 class="details-title" id="detailsTitle">Home</h2>
+            <div class="details-badge" id="detailsBadge">Start Here</div>
             <p class="details-description" id="detailsDescription">
-                Unleash your creativity with stunning visual designs and innovative concepts.
+                Welcome to my portfolio. Explore my work and get to know me.
             </p>
             <div class="details-features">
                 <div class="feature-item">
                     <div class="feature-icon">✓</div>
-                    <span>Professional quality output</span>
+                    <span>Interactive navigation</span>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">✓</div>
-                    <span>Customizable templates</span>
+                    <span>Explore my projects</span>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">✓</div>
-                    <span>Easy-to-use interface</span>
+                    <span>Learn about my skills</span>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">✓</div>
-                    <span>Regular updates included</span>
+                    <span>Get in touch</span>
                 </div>
             </div>
-            <button class="action-button">Select This Option</button>
+            <button class="action-button">Explore Section</button>
         </div>
+    </div>
+
+    <!-- Section Content Areas (Hidden by default) -->
+    <div class="sections-container">
+        <!-- About Section -->
+        <section id="section-about" class="section-content">
+            <div class="section-inner">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="profile-placeholder">👨‍💻</div>
+                    </div>
+                    <div class="about-text">
+                        <h3>Hi, I'm [Your Name]</h3>
+                        <p>I'm a passionate web developer with expertise in creating beautiful, functional websites and applications.</p>
+                        <p>With [X] years of experience in the field, I specialize in modern web technologies and love bringing creative ideas to life through code.</p>
+
+                        <div class="about-stats">
+                            <div class="stat">
+                                <h4>5+</h4>
+                                <p>Years Experience</p>
+                            </div>
+                            <div class="stat">
+                                <h4>20+</h4>
+                                <p>Projects Completed</p>
+                            </div>
+                            <div class="stat">
+                                <h4>15+</h4>
+                                <p>Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="section-projects" class="section-content">
+            <div class="section-inner">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon">💼</div>
+                        <h3>Project 1</h3>
+                        <p>Description of your first project. Technologies used: React, Node.js, MongoDB</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">GitHub</a>
+                            <a href="#" class="project-link">Live Demo</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">🚀</div>
+                        <h3>Project 2</h3>
+                        <p>Description of your second project. Technologies used: Vue.js, Express, PostgreSQL</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">GitHub</a>
+                            <a href="#" class="project-link">Live Demo</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">⚡</div>
+                        <h3>Project 3</h3>
+                        <p>Description of your third project. Technologies used: Next.js, TypeScript, Tailwind</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">GitHub</a>
+                            <a href="#" class="project-link">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="section-skills" class="section-content">
+            <div class="section-inner">
+                <h2>Skills & Technologies</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Others</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">GraphQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="section-contact" class="section-content">
+            <div class="section-inner">
+                <h2>Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <p>I'm always interested in hearing about new projects and opportunities.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <span class="contact-icon">📧</span>
+                                <a href="mailto:your.email@example.com">your.email@example.com</a>
+                            </div>
+                            <div class="contact-method">
+                                <span class="contact-icon">💼</span>
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                            </div>
+                            <div class="contact-method">
+                                <span class="contact-icon">🐙</span>
+                                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="section-resume" class="section-content">
+            <div class="section-inner">
+                <h2>Resume</h2>
+                <div class="resume-content">
+                    <div class="resume-preview">
+                        <div class="resume-icon">📄</div>
+                        <h3>Download My Resume</h3>
+                        <p>Get a detailed overview of my professional experience, education, and skills.</p>
+                        <button class="download-button">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="white" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </button>
+                    </div>
+                    <div class="resume-highlights">
+                        <h3>Highlights</h3>
+                        <ul>
+                            <li>5+ years of professional web development experience</li>
+                            <li>Proficient in modern JavaScript frameworks</li>
+                            <li>Strong background in responsive design</li>
+                            <li>Experience with agile development methodologies</li>
+                            <li>Bachelor's degree in Computer Science</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home Section (Placeholder) -->
+        <section id="section-home" class="section-content">
+            <div class="section-inner">
+                <h2>Welcome</h2>
+                <p>Use the carousel above to navigate to different sections!</p>
+            </div>
+        </section>
     </div>
 
     <script src="js/carousel.js"></script>
