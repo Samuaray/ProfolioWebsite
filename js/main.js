@@ -1,3 +1,58 @@
+// ==================== LOADING SCREEN ====================
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+    }, 2000); // Hide after 2 seconds
+});
+
+// ==================== HAMBURGER MENU ====================
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
+// ==================== SCROLL TO TOP BUTTON ====================
+const scrollTopBtn = document.getElementById('scroll-top');
+
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
 // ==================== SMOOTH SCROLL NAVIGATION ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -113,7 +168,7 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// ==================== TYPING EFFECT (optional) ====================
+// ==================== TYPING EFFECT ====================
 function typeWriter(element, text, speed = 50) {
     let i = 0;
     element.textContent = '';
@@ -129,14 +184,16 @@ function typeWriter(element, text, speed = 50) {
     type();
 }
 
-// Uncomment to enable typing effect on hero title
-// window.addEventListener('load', () => {
-//     const heroTitle = document.querySelector('.hero-title');
-//     if (heroTitle) {
-//         const text = heroTitle.textContent;
-//         typeWriter(heroTitle, text, 100);
-//     }
-// });
+// Enable typing effect on hero title
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            typeWriter(heroTitle, text, 80);
+        }
+    }, 2200); // Start after loading screen finishes
+});
 
 // ==================== PERFORMANCE MONITORING ====================
 if ('performance' in window) {

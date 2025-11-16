@@ -634,8 +634,39 @@ nav {
     }
 
     .header-content {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         gap: 20px;
+    }
+
+    /* Mobile Navigation */
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: rgba(13, 13, 13, 0.98);
+        backdrop-filter: blur(10px);
+        border-left: 2px solid var(--primary);
+        flex-direction: column;
+        padding: 100px 40px;
+        gap: 30px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        text-align: left;
     }
 
     nav {
@@ -715,6 +746,215 @@ nav {
         height: 300px;
         opacity: 0.1;
     }
+}
+
+/* ==================== LOADING SCREEN ==================== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--darker);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.terminal-boot {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+}
+
+.boot-line {
+    color: var(--primary);
+    opacity: 0;
+    animation: bootLine 0.5s ease forwards;
+    margin-bottom: 10px;
+}
+
+.boot-line:nth-child(1) { animation-delay: 0s; }
+.boot-line:nth-child(2) { animation-delay: 0.5s; }
+.boot-line:nth-child(3) { animation-delay: 1s; }
+.boot-line:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes bootLine {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==================== SCROLL TO TOP BUTTON ==================== */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-size: 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ==================== HAMBURGER MENU ==================== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ==================== SECTION DIVIDERS ==================== */
+.section-divider {
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.divider-line {
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--primary) 20%,
+        var(--primary) 80%,
+        transparent
+    );
+    position: relative;
+    animation: dividerPulse 3s ease-in-out infinite;
+}
+
+.divider-line::before,
+.divider-line::after {
+    content: '//';
+    position: absolute;
+    top: -10px;
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+}
+
+.divider-line::before {
+    left: 0;
+}
+
+.divider-line::after {
+    right: 0;
+}
+
+@keyframes dividerPulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== HERO BUTTONS ==================== */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.cta-secondary {
+    background: transparent;
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.cta-secondary:hover {
+    background: rgba(0, 136, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 136, 255, 0.5);
+}
+
+/* ==================== PROJECT HOVER EFFECTS ==================== */
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 100px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-card:hover .project-icon {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.15;
+}
+
+.project-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* ==================== SMOOTH SCROLL ==================== */
