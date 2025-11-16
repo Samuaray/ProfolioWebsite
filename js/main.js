@@ -49,6 +49,7 @@ window.help = function() {
     console.log('%c=== AVAILABLE COMMANDS ===', 'color: #00ff88; font-weight: bold; font-family: monospace;');
     console.log('%cabout() - Learn about me', 'color: #fff; font-family: monospace;');
     console.log('%cstats() - View my statistics', 'color: #fff; font-family: monospace;');
+    console.log('%cexperience() - View work history', 'color: #fff; font-family: monospace;');
     console.log('%cprojects() - See featured projects', 'color: #fff; font-family: monospace;');
     console.log('%cskills() - List my tech stack', 'color: #fff; font-family: monospace;');
     console.log('%ccontact() - Get in touch', 'color: #fff; font-family: monospace;');
@@ -65,6 +66,12 @@ window.stats = function() {
     console.log('%c> Projects: 50+', 'color: #00ff88; font-family: monospace;');
     console.log('%c> Commits: 10K+', 'color: #00ff88; font-family: monospace;');
     console.log('%c> Coffee: ∞', 'color: #00ff88; font-family: monospace;');
+};
+
+window.experience = function() {
+    console.log('%c[2022 - Present] Senior Software Engineer @ TechCorp Solutions', 'color: #00ff88; font-family: monospace;');
+    console.log('%c[2020 - 2022] Full-Stack Developer @ StartupHub Inc.', 'color: #00ff88; font-family: monospace;');
+    console.log('%c[2018 - 2020] Software Developer @ DevWorks Agency', 'color: #00ff88; font-family: monospace;');
 };
 
 window.projects = function() {
