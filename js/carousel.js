@@ -1,66 +1,59 @@
-// Card data
+// Navigation card data - Each card represents a section
 const cardsData = [
     {
-        emoji: '🎨',
-        title: 'Creative Design',
-        description: 'Unleash your creativity with stunning visual designs and innovative concepts.',
-        badge: 'Design',
+        emoji: '🏠',
+        title: 'Home',
+        description: 'Welcome to my portfolio. Explore my work and get to know me.',
+        badge: 'Start Here',
+        section: 'home',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
-        emoji: '🚀',
-        title: 'Fast Performance',
-        description: 'Experience lightning-fast speed and optimal performance in every interaction.',
-        badge: 'Speed',
+        emoji: '👨‍💻',
+        title: 'About Me',
+        description: 'Learn about my background, skills, and professional journey.',
+        badge: 'Introduction',
+        section: 'about',
         gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     },
     {
-        emoji: '💡',
-        title: 'Smart Solutions',
-        description: 'Intelligent features that adapt to your needs and enhance productivity.',
-        badge: 'Innovation',
+        emoji: '💼',
+        title: 'Projects',
+        description: 'Explore my portfolio of web development and design projects.',
+        badge: 'Portfolio',
+        section: 'projects',
         gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
     },
     {
-        emoji: '🎯',
-        title: 'Precision Focus',
-        description: 'Target your goals with pinpoint accuracy and achieve remarkable results.',
-        badge: 'Accuracy',
+        emoji: '⚡',
+        title: 'Skills',
+        description: 'Technologies, tools, and frameworks I work with daily.',
+        badge: 'Expertise',
+        section: 'skills',
         gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
     },
     {
-        emoji: '🌟',
-        title: 'Premium Quality',
-        description: 'Excellence in every detail with top-tier quality and craftsmanship.',
-        badge: 'Quality',
+        emoji: '📬',
+        title: 'Contact',
+        description: 'Get in touch for collaborations, opportunities, or just to say hi.',
+        badge: 'Connect',
+        section: 'contact',
         gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
     },
     {
-        emoji: '🔒',
-        title: 'Secure & Safe',
-        description: 'Advanced security measures to keep your data protected at all times.',
-        badge: 'Security',
+        emoji: '📄',
+        title: 'Resume',
+        description: 'Download my full CV and view my professional credentials.',
+        badge: 'Documents',
+        section: 'resume',
         gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
-    },
-    {
-        emoji: '🎵',
-        title: 'Harmony & Flow',
-        description: 'Perfect balance and seamless integration for a smooth experience.',
-        badge: 'Balance',
-        gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
-    },
-    {
-        emoji: '⚡',
-        title: 'Power & Energy',
-        description: 'Unleash unlimited potential with powerful features and capabilities.',
-        badge: 'Power',
-        gradient: 'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)'
     }
 ];
 
 let currentIndex = 0;
 let rotation = 0; // Track total rotation
 let isAnimating = false; // Prevent multiple clicks during animation
+let isMinimized = false; // Track carousel state (full vs mini)
 const carousel = document.getElementById('carousel');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -268,10 +261,97 @@ carousel.addEventListener('mouseleave', () => {
     autoRotate = setInterval(nextCard, 5000);
 });
 
+// Handle section navigation - Transform carousel to mini mode
+function navigateToSection(sectionId) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    // Add minimized class to trigger CSS transformation
+    const container = document.querySelector('.container');
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const detailsPanel = document.querySelector('.details-panel');
+    const mainTitle = document.querySelector('h1');
+
+    container.classList.add('minimized');
+    carouselWrapper.classList.add('mini');
+    detailsPanel.classList.add('hidden');
+    if (mainTitle) mainTitle.classList.add('hidden');
+
+    // Stop auto-rotation in mini mode
+    clearInterval(autoRotate);
+
+    // Show the selected section content
+    showSection(sectionId);
+
+    isMinimized = true;
+
+    setTimeout(() => {
+        isAnimating = false;
+    }, 1000);
+}
+
+// Show selected section content
+function showSection(sectionId) {
+    // Hide all sections first
+    const sections = document.querySelectorAll('.section-content');
+    sections.forEach(section => section.classList.remove('active'));
+
+    // Show the selected section
+    const targetSection = document.getElementById(`section-${sectionId}`);
+    if (targetSection) {
+        targetSection.classList.add('active');
+    }
+}
+
+// Return to home/full carousel view
+function returnToHome() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const container = document.querySelector('.container');
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const detailsPanel = document.querySelector('.details-panel');
+    const mainTitle = document.querySelector('h1');
+
+    // Remove minimized classes
+    container.classList.remove('minimized');
+    carouselWrapper.classList.remove('mini');
+    detailsPanel.classList.remove('hidden');
+    if (mainTitle) mainTitle.classList.remove('hidden');
+
+    // Hide all section content
+    const sections = document.querySelectorAll('.section-content');
+    sections.forEach(section => section.classList.remove('active'));
+
+    // Restart auto-rotation
+    autoRotate = setInterval(nextCard, 5000);
+
+    isMinimized = false;
+
+    setTimeout(() => {
+        isAnimating = false;
+    }, 1000);
+}
+
 // Initialize
 createCards();
 createParticles();
 updateCarousel();
+
+// Add click handler for the action button
+document.addEventListener('DOMContentLoaded', () => {
+    const actionButton = document.querySelector('.action-button');
+    if (actionButton) {
+        actionButton.addEventListener('click', () => {
+            const currentSection = cardsData[currentIndex].section;
+            if (currentSection === 'home') {
+                // Already on home, do nothing
+                return;
+            }
+            navigateToSection(currentSection);
+        });
+    }
+});
 
 // Touch support for mobile
 let touchStartX = 0;
