@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Mockup Gallery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+            padding: 60px 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 60px;
+            font-size: 18px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+
+        .mockup-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-5px);
+            border-color: #666;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mockup-preview {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-preview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mockup-card:hover .mockup-preview::after {
+            opacity: 1;
+        }
+
+        .cyberpunk { background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 100%); }
+        .luxury { background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); }
+        .glass { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .tech { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%); }
+
+        .mockup-info {
+            padding: 30px;
+        }
+
+        .mockup-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .mockup-info p {
+            color: #888;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature-tag {
+            background: #2a2a2a;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .view-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .view-button:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Website Mockup Gallery</h1>
+        <p class="subtitle">Explore different futuristic and premium design styles for your portfolio</p>
+
+        <div class="gallery">
+            <div class="mockup-card">
+                <div class="mockup-preview cyberpunk">✨</div>
+                <div class="mockup-info">
+                    <h2>Cyberpunk Neon</h2>
+                    <p>Dark theme with vibrant neon colors, animated grid backgrounds, and glowing effects. Perfect for a tech-forward, edgy aesthetic.</p>
+                    <div class="features">
+                        <span class="feature-tag">Neon Accents</span>
+                        <span class="feature-tag">Dark Theme</span>
+                        <span class="feature-tag">Animated Grid</span>
+                        <span class="feature-tag">Gradient Text</span>
+                    </div>
+                    <a href="cyberpunk-neon.html" class="view-button">View Mockup →</a>
+                </div>
+            </div>
+
+            <div class="mockup-card">
+                <div class="mockup-preview luxury">💎</div>
+                <div class="mockup-info">
+                    <h2>Minimal Luxury</h2>
+                    <p>Elegant and sophisticated with premium typography, subtle gradients, and clean spacing. Ideal for high-end professional portfolios.</p>
+                    <div class="features">
+                        <span class="feature-tag">Serif Fonts</span>
+                        <span class="feature-tag">Elegant</span>
+                        <span class="feature-tag">Minimal</span>
+                        <span class="feature-tag">Premium Feel</span>
+                    </div>
+                    <a href="minimal-luxury.html" class="view-button">View Mockup →</a>
+                </div>
+            </div>
+
+            <div class="mockup-card">
+                <div class="mockup-preview glass">🌊</div>
+                <div class="mockup-info">
+                    <h2>Glassmorphism</h2>
+                    <p>Modern frosted glass effects with vibrant gradient backgrounds and blur effects. Trendy and visually striking design.</p>
+                    <div class="features">
+                        <span class="feature-tag">Glass Effect</span>
+                        <span class="feature-tag">Blur</span>
+                        <span class="feature-tag">Vibrant Colors</span>
+                        <span class="feature-tag">Modern</span>
+                    </div>
+                    <a href="glassmorphism.html" class="view-button">View Mockup →</a>
+                </div>
+            </div>
+
+            <div class="mockup-card">
+                <div class="mockup-preview tech">⚡</div>
+                <div class="mockup-info">
+                    <h2>High-Tech Grid</h2>
+                    <p>Terminal-inspired design with monospace fonts, grid patterns, and scanline effects. Perfect for developers and tech enthusiasts.</p>
+                    <div class="features">
+                        <span class="feature-tag">Grid Layout</span>
+                        <span class="feature-tag">Monospace</span>
+                        <span class="feature-tag">Tech Theme</span>
+                        <span class="feature-tag">Scanlines</span>
+                    </div>
+                    <a href="high-tech-grid.html" class="view-button">View Mockup →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
