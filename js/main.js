@@ -651,6 +651,72 @@ if (contactForm) {
     });
 }
 
+// ==================== PROJECT FILTERING ====================
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+const techTags = document.querySelectorAll('.tech-tag');
+
+// Filter button click handler
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update active button
+        filterBtns.forEach(b => {
+            b.classList.remove('active');
+            const cursor = b.querySelector('.filter-cursor');
+            if (cursor) cursor.style.opacity = '0';
+        });
+        btn.classList.add('active');
+        const cursor = btn.querySelector('.filter-cursor');
+        if (cursor) cursor.style.opacity = '1';
+
+        // Filter projects
+        filterProjects(filter);
+    });
+});
+
+// Tech tag click handler
+techTags.forEach(tag => {
+    tag.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering project modal
+        const tech = tag.getAttribute('data-tech');
+
+        // Find and activate corresponding filter button
+        const filterBtn = document.querySelector(`.filter-btn[data-filter="${tech}"]`);
+        if (filterBtn) {
+            filterBtn.click();
+        }
+    });
+});
+
+// Filter function
+function filterProjects(filter) {
+    projectCards.forEach(card => {
+        const tags = card.getAttribute('data-tags');
+
+        if (filter === 'all') {
+            // Show all projects
+            card.classList.remove('hidden');
+            setTimeout(() => {
+                card.style.position = 'relative';
+            }, 400);
+        } else if (tags && tags.includes(filter)) {
+            // Show matching projects
+            card.classList.remove('hidden');
+            setTimeout(() => {
+                card.style.position = 'relative';
+            }, 400);
+        } else {
+            // Hide non-matching projects
+            card.classList.add('hidden');
+            setTimeout(() => {
+                card.style.position = 'absolute';
+            }, 0);
+        }
+    });
+}
+
 // ==================== PERFORMANCE MONITORING ====================
 if ('performance' in window) {
     window.addEventListener('load', () => {
