@@ -312,6 +312,12 @@ const projectData = {
         icon: '🛒',
         title: 'E-COMMERCE PLATFORM',
         subtitle: 'React • Node.js • PostgreSQL',
+        screenshots: [
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Homepage',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Product+Listing',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Shopping+Cart',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Admin+Dashboard'
+        ],
         overview: 'A comprehensive full-stack e-commerce solution designed to handle high-traffic shopping experiences. Features include real-time inventory tracking, secure payment processing, advanced search and filtering, and a powerful admin dashboard for managing products, orders, and customers.',
         challenge: 'The main challenge was building a system that could handle thousands of concurrent users during peak shopping periods (Black Friday, holiday seasons) while maintaining sub-second response times. The platform also needed to integrate with multiple payment providers and shipping APIs while ensuring data consistency across distributed systems.',
         solution: 'Implemented a microservices architecture with Redis caching layer for frequently accessed data. Used React with server-side rendering for fast initial page loads and optimized SEO. Built a custom inventory management system with real-time updates using WebSockets. Integrated Stripe and PayPal for payments with robust error handling and retry mechanisms.',
@@ -329,6 +335,12 @@ const projectData = {
         icon: '🤖',
         title: 'TASK AUTOMATION TOOL',
         subtitle: 'Python • OpenAI API • Docker',
+        screenshots: [
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=CLI+Interface',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Code+Generation',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Test+Generation',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=IDE+Integration'
+        ],
         overview: 'An intelligent developer productivity tool that automates repetitive coding tasks using AI-powered code generation. The tool analyzes codebases, identifies patterns, and generates boilerplate code, tests, and documentation automatically. Designed to integrate seamlessly into existing development workflows.',
         challenge: 'Developers spend significant time on repetitive tasks like writing boilerplate code, creating unit tests, and updating documentation. The challenge was building a tool that could understand project context, maintain code consistency, and generate high-quality code that actually works without extensive manual editing.',
         solution: 'Built a Python-based CLI tool that uses OpenAI GPT-4 API for code generation. Implemented custom prompts optimized for different programming languages and frameworks. Created a Docker container for consistent execution across different development environments. Added template system for common patterns and integration with popular IDEs through extensions.',
@@ -346,6 +358,12 @@ const projectData = {
         icon: '📊',
         title: 'REAL-TIME ANALYTICS DASHBOARD',
         subtitle: 'TypeScript • React • Redis',
+        screenshots: [
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Main+Dashboard',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Real-time+Charts',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Custom+Filters',
+            'https://via.placeholder.com/1200x675/0d0d0d/00ff88?text=Alert+System'
+        ],
         overview: 'A powerful real-time analytics platform that processes and visualizes millions of events per day. Features interactive charts, custom dashboards, advanced filtering, and real-time alerts. Built for data-driven teams that need instant insights into their business metrics and user behavior.',
         challenge: 'Processing and visualizing millions of data points in real-time while maintaining a responsive user interface was extremely challenging. The system needed to handle sudden traffic spikes, provide sub-second query responses, and allow users to create custom dashboards without performance degradation.',
         solution: 'Implemented a streaming data pipeline using Redis Streams for real-time event processing. Built a React dashboard with virtualization for rendering large datasets efficiently. Used WebSockets for live updates and implemented smart caching strategies. Created a custom query builder that generates optimized SQL queries and leverages pre-aggregated data when possible.',
@@ -360,6 +378,9 @@ const projectData = {
         githubUrl: 'https://github.com/alexchen/analytics-dashboard'
     }
 };
+
+let currentImageIndex = 0;
+let currentProjectScreenshots = [];
 
 function openProjectModal(projectKey) {
     const modal = document.getElementById('project-modal');
@@ -383,9 +404,67 @@ function openProjectModal(projectKey) {
     document.querySelector('.modal-btn-primary').href = project.liveUrl;
     document.querySelector('.modal-btn-secondary').href = project.githubUrl;
 
+    // Initialize gallery
+    currentProjectScreenshots = project.screenshots || [];
+    currentImageIndex = 0;
+    initGallery();
+
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+function initGallery() {
+    const galleryImagesContainer = document.querySelector('.gallery-images');
+    const galleryDotsContainer = document.querySelector('.gallery-dots');
+
+    // Clear existing content
+    galleryImagesContainer.innerHTML = '';
+    galleryDotsContainer.innerHTML = '';
+
+    // Create images
+    currentProjectScreenshots.forEach((screenshot, index) => {
+        const img = document.createElement('img');
+        img.src = screenshot;
+        img.alt = `Project screenshot ${index + 1}`;
+        img.className = 'gallery-image';
+        if (index === 0) img.classList.add('active');
+        galleryImagesContainer.appendChild(img);
+    });
+
+    // Create dots
+    currentProjectScreenshots.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'gallery-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => showImage(index));
+        galleryDotsContainer.appendChild(dot);
+    });
+}
+
+function showImage(index) {
+    const images = document.querySelectorAll('.gallery-image');
+    const dots = document.querySelectorAll('.gallery-dot');
+
+    // Remove active class from all
+    images.forEach(img => img.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Add active class to current
+    if (images[index]) images[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
+
+    currentImageIndex = index;
+}
+
+function nextImage() {
+    const nextIndex = (currentImageIndex + 1) % currentProjectScreenshots.length;
+    showImage(nextIndex);
+}
+
+function prevImage() {
+    const prevIndex = (currentImageIndex - 1 + currentProjectScreenshots.length) % currentProjectScreenshots.length;
+    showImage(prevIndex);
 }
 
 function closeProjectModal() {
@@ -421,10 +500,28 @@ window.addEventListener('load', () => {
             });
         }
 
+        // Gallery navigation handlers
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevImage);
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextImage);
+        }
+
         // Keyboard support
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeProjectModal();
+            if (modal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeProjectModal();
+                } else if (e.key === 'ArrowLeft') {
+                    prevImage();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage();
+                }
             }
         });
     }, 2500);
