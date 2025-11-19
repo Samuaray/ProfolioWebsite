@@ -75,33 +75,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ==================== FORM SUBMISSION ====================
-const contactForm = document.querySelector('.contact-form');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const submitBtn = contactForm.querySelector('.cta-button');
-        const originalText = submitBtn.querySelector('span').textContent;
-
-        // Show success message
-        submitBtn.querySelector('span').textContent = '> Message Sent Successfully';
-        submitBtn.style.borderColor = 'var(--primary)';
-
-        // Reset form
-        contactForm.reset();
-
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitBtn.querySelector('span').textContent = originalText;
-        }, 3000);
-
-        // In production, you would send the data to a server here
-        console.log('%c> Form submitted successfully', 'color: #00ff88; font-family: monospace;');
-    });
-}
-
 // ==================== CONSOLE EASTER EGG ====================
 console.log('%c> SAMUEL ARAYA PORTFOLIO INITIALIZED', 'color: #00ff88; font-size: 20px; font-weight: bold; font-family: monospace;');
 console.log('%c> Software Engineer | Full-Stack Developer', 'color: #0088ff; font-size: 14px; font-family: monospace;');
