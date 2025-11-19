@@ -202,14 +202,26 @@ body {
 
 /* ==================== HEADER ==================== */
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     background: rgba(13, 13, 13, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 136, 0.2);
     padding: 30px 0;
     z-index: 100;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
+}
+
+header.header-visible {
+    transform: translateY(0);
 }
 
 .header-content {

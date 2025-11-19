@@ -61,6 +61,55 @@ if (scrollTopBtn) {
     });
 }
 
+// ==================== AUTO-HIDE HEADER ====================
+const header = document.querySelector('header');
+let lastScrollY = window.scrollY;
+let mouseHoverTimeout;
+
+// Hide/show header based on scroll
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY < 100) {
+        // Always show header when near top
+        header.classList.remove('header-hidden');
+        header.classList.add('header-visible');
+    } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide header
+        header.classList.add('header-hidden');
+        header.classList.remove('header-visible');
+    } else {
+        // Scrolling up - show header
+        header.classList.remove('header-hidden');
+        header.classList.add('header-visible');
+    }
+
+    lastScrollY = currentScrollY;
+});
+
+// Show header when mouse hovers at top of screen
+document.addEventListener('mousemove', (e) => {
+    // Clear any existing timeout
+    clearTimeout(mouseHoverTimeout);
+
+    // If mouse is in top 50px of screen
+    if (e.clientY < 50 && window.scrollY > 100) {
+        // Wait 300ms before showing (prevents accidental triggers)
+        mouseHoverTimeout = setTimeout(() => {
+            header.classList.remove('header-hidden');
+            header.classList.add('header-visible');
+        }, 300);
+    } else if (e.clientY > 150 && window.scrollY > 100) {
+        // If mouse moves away from top, hide header again if scrolled down
+        mouseHoverTimeout = setTimeout(() => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-hidden');
+                header.classList.remove('header-visible');
+            }
+        }, 500);
+    }
+});
+
 // ==================== SMOOTH SCROLL NAVIGATION ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
