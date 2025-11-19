@@ -527,6 +527,108 @@ window.addEventListener('load', () => {
     }, 2500);
 });
 
+// ==================== ANIMATED STATS COUNTERS ====================
+let statsAnimated = false;
+
+function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16); // 60fps
+    let current = start;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = Math.floor(target);
+            clearInterval(timer);
+        } else {
+            // For large numbers, add commas
+            const value = Math.floor(current);
+            if (value >= 1000) {
+                element.textContent = (value / 1000).toFixed(0) + 'K';
+            } else {
+                element.textContent = value;
+            }
+        }
+    }, 16);
+}
+
+// Observe stats section
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+            statsAnimated = true;
+            const statValues = document.querySelectorAll('.stat-value[data-count]');
+
+            statValues.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                animateCounter(stat, target);
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+    statsObserver.observe(statsSection);
+}
+
+// ==================== EMAILJS CONTACT FORM ====================
+// Initialize EmailJS with your public key
+// IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+(function() {
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+    }
+})();
+
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+const submitBtn = document.querySelector('#contact-form button[type="submit"]');
+const submitText = document.getElementById('form-submit-text');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Disable submit button and show loading state
+        submitBtn.disabled = true;
+        submitText.textContent = '$ Sending...';
+        formStatus.className = 'form-status';
+        formStatus.style.display = 'none';
+
+        // Send email using EmailJS
+        // IMPORTANT: Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+
+                // Show success message
+                formStatus.textContent = '> Message sent successfully! I\'ll get back to you soon.';
+                formStatus.className = 'form-status success';
+
+                // Reset form
+                contactForm.reset();
+
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitText.textContent = '$ Send Message';
+                    formStatus.style.display = 'none';
+                }, 3000);
+            }, function(error) {
+                console.log('FAILED...', error);
+
+                // Show error message
+                formStatus.textContent = '> Error sending message. Please try again or email me directly.';
+                formStatus.className = 'form-status error';
+
+                // Reset button
+                submitBtn.disabled = false;
+                submitText.textContent = '$ Send Message';
+            });
+    });
+}
+
 // ==================== PERFORMANCE MONITORING ====================
 if ('performance' in window) {
     window.addEventListener('load', () => {
