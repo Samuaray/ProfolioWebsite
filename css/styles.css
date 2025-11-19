@@ -225,6 +225,9 @@ header {
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #fff;
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 .logo-prefix {
@@ -256,6 +259,9 @@ nav {
     text-decoration: none;
     transition: all 0.3s;
     position: relative;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
 }
 
 .bracket-left,
