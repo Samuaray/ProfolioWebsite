@@ -103,7 +103,7 @@ if (contactForm) {
 }
 
 // ==================== CONSOLE EASTER EGG ====================
-console.log('%c> ALEX CHEN PORTFOLIO INITIALIZED', 'color: #00ff88; font-size: 20px; font-weight: bold; font-family: monospace;');
+console.log('%c> SAMUEL ARAYA PORTFOLIO INITIALIZED', 'color: #00ff88; font-size: 20px; font-weight: bold; font-family: monospace;');
 console.log('%c> Software Engineer | Full-Stack Developer', 'color: #0088ff; font-size: 14px; font-family: monospace;');
 console.log('%c> Type help() for available commands', 'color: rgba(255, 255, 255, 0.7); font-size: 12px; font-family: monospace;');
 
